@@ -27,7 +27,29 @@ const TODO = (props) => {
   const [modal, setModal] = useState(false)
   const [loanding, setLoanding] = useState(false)
   const [error, setError] = useState(false)
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([
+    {
+      categories: ["home", "party"],
+      isFinished: false,
+      startTime: "dsgfsadfgsdfgsdg",
+      taskName: "Test1",
+      _id: "123"
+    },
+    {
+      categories: ["home", "party"],
+      isFinished: true,
+      startTime: "dsgfsadfgsdfgsdg",
+      taskName: "Test2",
+      _id: "456"
+    },
+    {
+      categories: ["home", "party"],
+      isFinished: false,
+      startTime: "dsgfsadfgsdfgsdg",
+      taskName: "Test3",
+      _id: "789"
+    },
+  ])
 
   const { Option } = Select
 
@@ -35,23 +57,21 @@ const TODO = (props) => {
 
     document.title = "To DO list | my list"
 
-    axios.get('https://crudcrud.com/api/7bec873a5e7b451f8c7e0c1911a0d36d/todos')
+    /* axios.get('https://crudcrud.com/api/7bec873a5e7b451f8c7e0c1911a0d36d/todos')
       .then(res => {
-        if (res.satus  === 200) {
+        if (res.status  === 200) {
           setTodos(res.data)
         }
       })
       .catch(err => {
         console.log(err);
-      })
+      }) */
 
     return () => { /* Unmount */ }
   }, [])
 
   const onFinish = async (values) => {
     setLoanding(true)
-    console.log(values);
-    console.log(values.time._d.toString());
 
     const options = {
       data: {
@@ -68,8 +88,8 @@ const TODO = (props) => {
     try {
       const res = await axios.request(options)
 
-      console.log(res);
       if (res.status === 201) {
+        setTodos([...todos, res.data])
         setModal(false)
       }
 
@@ -86,7 +106,7 @@ const TODO = (props) => {
   };
 
   const updateToDo = (type, id, values) => {
-    console.log(type, id, values);
+    // console.log(type, id, values);
     let options = {}
     if (type === "DELETE") {
       options = {
@@ -108,14 +128,20 @@ const TODO = (props) => {
       }
     }
 
-    axios.request(options)
+    let indexDel = todos.findIndex(el => el._id === id)
+    let tempList = [...todos]
+    tempList.splice(indexDel, 1)
+    setTodos(tempList)
+
+    /* axios.request(options)
       .then(res => {
         console.log(res);
       })
       .catch(err => {
+        setLoanding(false)
         setError(true)
         console.log(err);
-      })
+      }) */
   }
 
   return (
