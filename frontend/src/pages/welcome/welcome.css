@@ -1,0 +1,33 @@
+.welcomeCont {
+  width: 100vw;
+  height: 100vh;
+
+  margin: auto;
+
+  display: flex;
+  flex-flow: column;
+}
+
+.welcomeCont .welcome-header {
+  border-bottom: 1px solid #DDD;
+}
+
+.descriptionCont {
+  margin: auto;
+
+  display: flex;
+  flex-flow: column;
+}
+
+.welcomeCont .descriptionCont .description {
+  width: 90%;
+
+  margin: auto auto 10px auto;
+
+  text-align: center;
+  font-size: 18px;
+}
+
+.welcomeCont .descriptionCont .mainBtn {
+  margin: auto;
+}

@@ -1,0 +1,33 @@
+.LoginCont {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin: auto;
+
+  display: flex;
+  flex-flow: column;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.LoginCont h1 {
+  width: 90%;
+
+  margin: auto auto 20px auto;
+
+  font-weight: 100;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+
+  z-index: 10;
+}
+
+.LoginCont form {
+  width: 50%;
+
+  margin: 10px auto auto auto;
+}
